@@ -18,7 +18,7 @@ const products=[
         name:"Realme 10 pro",
         desc:"Just enjoy the new era of mobile technology",
         price: 15000,
-        image:"https://res.cloudinary.com/dj9am2vva/image/upload/v1673871930/samples/Online%20ecom/realme-10-pro-1_vpaqyb.jpg"
+        image:"https://res.cloudinary.com/dj9am2vva/image/upload/v1673935943/samples/Online%20ecom/realme10_o8myy4.webp"
     },
     {
         id:4,

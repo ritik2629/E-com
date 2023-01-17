@@ -1,4 +1,4 @@
-.not-found{
+.not_found{
     justify-content: center;
     text-align: center;
     display: flex;
@@ -6,19 +6,19 @@
     min-height: 100vh;
 }
 
-.not-found h2{
+.not_found h2{
     color: teal;
     font-weight: bold;
     font-size: 30px;
 }
 
-.not-found p{
+.not_found p{
     font-weight: bold;
     font-size: 20px;
     color: grey;
 }
 
-button{
+.btn{
     display: block;
     margin: auto;
     padding: 10px;
