@@ -1,7 +1,10 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import styles from './ProductList.module.css';
+import { addToCart } from "../../redux/features/cart/cartSlice";
 
 export const ProductList = ({data,isLoading,isError}) => {
+  const dispatch=useDispatch()
   return (
       <div className={styles.home_container}>
         {isLoading ? (
@@ -22,7 +25,7 @@ export const ProductList = ({data,isLoading,isError}) => {
                       <span>{desc}</span>
                       <span className={styles.price}>₹{price}</span>
                     </div>
-                    <button className={styles.btn}>Add To Cart</button>
+                    <button className={styles.btn} onClick={()=>dispatch(addToCart(item))}>Add To Cart</button>
                   </div>
                 );
               })}

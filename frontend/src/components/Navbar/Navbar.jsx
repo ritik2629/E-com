@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import styles from './Navbar.module.css';
 
 export const Navbar = () => {
-    const data = useSelector(state=>state.cart)
+    const data = useSelector(state=>state.cart.cartItems)
     console.log(data)
     return (
         <nav className={styles.nav_bar}>
@@ -14,9 +14,9 @@ export const Navbar = () => {
             </Link>
             <Link to="/cart"><div className={styles.nav_bag}>
                 <MdShoppingCart />
-                <span className={styles.bag_qty}>
-                    <span>3</span>
-                </span>
+                {(data.length>0)?<span className={styles.bag_qty}>
+                    <span>{data.length}</span>
+                </span>:null}
             </div></Link>
         </nav>
     )
