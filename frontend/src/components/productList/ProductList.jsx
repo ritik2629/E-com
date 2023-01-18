@@ -2,9 +2,16 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import styles from './ProductList.module.css';
 import { addToCart } from "../../redux/features/cart/cartSlice";
+import {useNavigate} from 'react-router-dom'
 
 export const ProductList = ({data,isLoading,isError}) => {
   const dispatch=useDispatch()
+  const navigate=useNavigate()
+
+  function addHandler(item){
+    dispatch(addToCart(item))
+    navigate('/cart')
+  }
   return (
       <div className={styles.home_container}>
         {isLoading ? (
@@ -25,7 +32,7 @@ export const ProductList = ({data,isLoading,isError}) => {
                       <span>{desc}</span>
                       <span className={styles.price}>₹{price}</span>
                     </div>
-                    <button className={styles.btn} onClick={()=>dispatch(addToCart(item))}>Add To Cart</button>
+                    <button className={styles.btn} onClick={()=>addHandler(item)}>Add To Cart</button>
                   </div>
                 );
               })}
