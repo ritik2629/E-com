@@ -6,7 +6,7 @@ import styles from './Navbar.module.css';
 
 export const Navbar = () => {
     const data = useSelector(state=>state.cart.cartItems)
-    console.log(data)
+    // console.log(data)
     return (
         <nav className={styles.nav_bar}>
             <Link to="/">

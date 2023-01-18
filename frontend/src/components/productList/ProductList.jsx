@@ -8,7 +8,7 @@ export const ProductList = ({data,isLoading,isError}) => {
   const dispatch=useDispatch()
   const navigate=useNavigate()
 
-  function addHandler(item){
+  const addHandler=(item)=>{
     dispatch(addToCart(item))
     navigate('/cart')
   }
