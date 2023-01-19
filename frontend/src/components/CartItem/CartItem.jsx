@@ -1,13 +1,19 @@
-import React from "react";
+import React,{useEffect} from "react";
 import styles from "./CartItem.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import {clearCart, removeToCart,decreaseQty,increaseQty,getTotal} from '../../redux/features/cart/cartSlice';
 
 export const CartItem = () => {
   const navigate = useNavigate();
+  const dispatch =useDispatch();
   const cartData = useSelector((state) => state.cart.cartItems);
   const cartTotal = useSelector((state) => state.cart.cartTotalAmount);
-  console.log(cartData);
+  
+  useEffect(()=>{
+    dispatch(getTotal())
+  },[cartData])
+
   return (
     <div className={styles.cart_container}>
       <h1>Shopping Cart</h1>
@@ -36,14 +42,14 @@ export const CartItem = () => {
                     <div>
                       <h3>{name}</h3>
                       <p>{desc}</p>
-                      <button>Remove</button>
+                      <button onClick={()=>dispatch(removeToCart(item))}>Remove</button>
                     </div>
                   </div>
                   <div className={styles.product_price}>{`₹ ${price}`}</div>
                   <div className={styles.product_qty}>
-                    <button>-</button>
+                    <button onClick={()=>dispatch(decreaseQty(item))}>-</button>
                     <div className={styles.count}>{cartquantity}</div>
-                    <button>+</button>
+                    <button onClick={()=>dispatch(increaseQty(item))}>+</button>
                   </div>
                   <div className={styles.product_total}>
                     ₹{cartquantity * price}
@@ -53,11 +59,11 @@ export const CartItem = () => {
             })}
           </div>
           <div className={styles.cart_summary}>
-            <button className={styles.clear_cart}>Clear Cart</button>
+            <button className={styles.clear_cart} onClick={()=>dispatch(clearCart())}>Clear Cart</button>
             <div className={styles.cart_checkout}>
               <div className={styles.subtotal}>
                 <span>Subtotal</span>
-                <span className={styles.amount}>₹{cartTotal || 0}</span>
+                <span className={styles.amount}>₹{cartTotal}</span>
               </div>
               <p>Taxes and shipping calculated at checkout</p>
               <div className={styles.navi}>
